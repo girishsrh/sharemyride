@@ -1,0 +1,86 @@
+﻿@using System.Linq
+@model IEnumerable<ShareMyDrive.Models.CarModel>
+
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+<div>
+    @using (Html.BeginForm())
+    {
+        <p>
+            From: @Html.TextBox("From")
+            <br />
+            <br/>
+            To: @Html.TextBox("To")
+            <br />
+            <br/>
+            <input type="submit" class="btn btn-primary" value="Search" />
+        </p>
+
+        if (Model != null)
+        {
+            <table>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.From)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.To)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AvailableSeats)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.From)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.To)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AvailableSeats)
+                        </td>
+                        <img src="~/Content/images/images%20(6).jpg" /><img src="~/Content/images/images%20(5).jpg" />
+                    </tr>
+                }
+
+            </table>
+            if (!Model.Any())
+            {
+                <div class="ui-icon-alert">
+                    <img src="~/Content/images/images.jpg" />
+                    Sorry!!! No match found.
+                </div>
+            }
+        }
+
+    }
+
+
+</div>
